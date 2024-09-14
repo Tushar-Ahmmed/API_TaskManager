@@ -1,0 +1,6 @@
+1. Project File Structure
+2. Project Packages
+3. Route Configuration
+4. App.js Configuration
+5. Email Credential Configuration
+6. Write Model Properties
