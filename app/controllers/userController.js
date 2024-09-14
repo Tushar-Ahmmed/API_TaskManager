@@ -110,8 +110,24 @@ export const CodeVerify = async (req, res)=>{
 
 
 export const ResetPassword = async (req, res)=>{
-    return res.json({"status":"Seccess"})
+    try {
+        let reqBody = req.body
+        let data = await Users.findOne({email: reqBody.email, otp: reqBody.otp})
+        if(data == null){
+            return res.json({"status":"Failed", "message":"Wrong Verification Code"})
+        }
+        else{
+            await Users.updateOne({email:reqBody.email},{passwprd:reqBody.passwprd, otp:0})
+            return res.json({"status":"success", "message":"Pasword Reset Successfull"})
+        }
+    } catch (e) {
+        return res.json({"status":"failed","message":e.toString()})
+    }
 }
+
+
+
+
 export const Logout = async (req, res)=>{
     return res.json({"status":"Seccess"})
 }
