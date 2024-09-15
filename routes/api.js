@@ -16,10 +16,10 @@ router.post("/ResetPassword", UserController.ResetPassword)
 
 
 // Task
-router.post("/CreateTask",TaskController.CreateTask)
-router.get("/CountTask",TaskController.CountTask)
-router.get("/DeleteTask",TaskController.DeleteTask)
-router.get("/UpdateTaskStatus",TaskController.UpdateTaskStatus)
-router.get("/TaskListByStatus",TaskController.TaskListByStatus)
+router.post("/CreateTask",authMiddleware, TaskController.CreateTask)
+router.get("/CountTask",authMiddleware, TaskController.CountTask)
+router.get("/DeleteTask/:id",authMiddleware, TaskController.DeleteTask)
+router.get("/UpdateTaskStatus/:id/:status",authMiddleware, TaskController.UpdateTaskStatus)
+router.get("/TaskListByStatus/:status",authMiddleware, TaskController.TaskListByStatus)
 
 export default router
